@@ -2,6 +2,7 @@ class UserController < ApplicationController
   attr_accessor :state, :email, :roleId, :userId
   ACTIVE = 'active';
   INACTIVE = 'inactive';
+
   def new
      return User.new
   end
@@ -35,13 +36,27 @@ class UserController < ApplicationController
     end
   end
 
+  def setLoginUserDetails
+    session[:state] = true;
+    session[:email] = "navneetnsit09@gmail.com";
+    session[:roleId] = 1;
+    session[:userId] = 1;
+    getLoggedInUserDetails
+  end
+
   def getLoggedInUserDetails
-    user = User.new;
+    user = nil;
     if(session.present? && session[:state])
+      user  = UserController.new;
       user.email = session[:email];
       user.roleId = session[:roleId];
       user.userId = session[:userId];
     end
     return user;
   end
+
+  def deleteUserSession
+     session[:state] = session[:email] = session[:roleId] = session[:userId] = nil;
+  end
+
 end

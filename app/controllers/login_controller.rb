@@ -1,35 +1,32 @@
 class LoginController < UserController
   before_action :ifLogin, except: [:login]
 
-  def index
-
-  end
-
   def ifLogin
-    user = getLoggedInUserDetails();
+    user = getLoggedInUserDetails;
     if(user.present?)
       return true;
     end
-      redirect_to :controller => 'home', :action => 'login'
+    render template: 'login/login';
   end
 
   def login
-     user = getLoggedInUserDetails();
+     user = getLoggedInUserDetails;
      if(user.present?)
-       redirect_to :controller => 'home', :action => 'index'
+     else(params[:commit]=="sign in")
+       setLoginUserDetails
      end
-       render action: :index
+
+     redirect_to :controller => 'home', :action => 'index'
+
   end
 
   def logout
-    user = getLoggedInUserDetails();
+    user = getLoggedInUserDetails;
     if(user.present?)
-      session[:state] = session[:email] = session[:roleId] = session[:userId] = null;
-      redirect_to :controller => 'home' , :action => 'index';
+      deleteUserSession;
     else
-      redirect_to :action => 'login';
     end
 
-
+    redirect_to :controller => 'home' , :action => 'index';
   end
 end
