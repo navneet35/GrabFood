@@ -1,0 +1,54 @@
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header login_modal_header">
+        <h2 class="modal-title" id="myModalLabel">Register</h2>
+      </div>
+      <div class="modal-body login-modal">
+        <div class="clearfix"></div>
+        <div>
+          <p id="msg"></p>
+        </div>
+        <div id='social-icons-conatainer'>
+          <%= form_tag('/login/register', :id=>'registerForm') do %>
+              <div class='modal-body-center' style="margin-left: 5px">
+
+                <div class="form-group">
+                  <input type="text" id="name" name="name" placeholder="Enter your name" value="<%=params[:name] if params[:name].present? %>" class="form-control login-field" autofocus>
+                  <i class="fa fa-user login-field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <input type="email" id="email" name="email" placeholder="Enter your email" value="<%=params[:email] if params[:email].present? %>" class="form-control login-field">
+                  <i class="fa fa-envelope-o login-field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <input type="password" id="pass" name="pass" placeholder="Password" value="" class="form-control login-field">
+                  <i class="fa fa-lock login-field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <input type="password" id="repass" name="repass" placeholder="Password" value="" class="form-control login-field">
+                  <i class="fa fa-lock login-field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="contact" name="contact" placeholder="Contact No(Optional)" value="<%=params[:contact] if params[:contact].present? %>" class="form-control login-field">
+                  <i class="fa fa-mobile login-field-icon"></i>
+                </div>
+
+                <div class="form-group modal-register-btn">
+                  <button class="btn btn-success"  name="commit" type="submit" value="Register">Register</button>
+                  <a href="/login/login" class="btn btn-default"  >Back To Sign In</a>
+                </div>
+              </div>
+          <%end%>
+        </div>
+        <div class="clearfix"></div>
+
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-footer login_modal_footer">
+      </div>
+    </div>
+  </div>

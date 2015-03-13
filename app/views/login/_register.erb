@@ -1,0 +1,57 @@
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header login_modal_header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h2 class="modal-title" id="myModalLabel">Register</h2>
+      </div>
+      <div class="modal-body login-modal">
+        <div class="clearfix"></div>
+        <div>
+          <p id="msg"></p>
+        </div>
+        <div id='social-icons-conatainer'>
+          <%= form_tag('/login/register', remote: true, :authenticity_token => false) do %>
+              <div class='modal-body-center' style="margin-left: 5px">
+
+                <div class="form-group">
+                  <input type="text" id="name" name="name" placeholder="Enter your name" value="" class="form-control login-field">
+                  <i class="fa fa-user login-field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <input type="email" id="email" name="email" placeholder="Enter your email" value="" class="form-control login-field">
+                  <i class="fa fa-envelope-o login-field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <input type="password" id="pass" name="pass" placeholder="Password" value="" class="form-control login-field">
+                  <i class="fa fa-lock login-field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <input type="password" id="repass" name="repass" placeholder="Password" value="" class="form-control login-field">
+                  <i class="fa fa-lock login-field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="contact" name="contact" placeholder="Contact No" value="" class="form-control login-field">
+                  <i class="fa fa-mobile login-field-icon"></i>
+                </div>
+
+                <div class="form-group modal-register-btn">
+                  <button class="btn btn-success" data-toggle="modal"  name="commit" type="submit" value="Register">Register</button>
+                  <a href="#" class="btn btn-default" data-toggle="modal" data-dismiss="modal"  data-target="#login-modal" >Back To Sign In</A>
+                </div>
+              </div>
+          <%end%>
+        </div>
+        <div class="clearfix"></div>
+
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-footer login_modal_footer">
+      </div>
+    </div>
+  </div>
+</div>

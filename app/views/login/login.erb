@@ -1,110 +1,47 @@
-<html>
-<style>
-    html {
-        background: url(/images/background-image.jpg) #3b7cd8 no-repeat center top;
-    }
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header login_modal_header">
+        <h2 class="modal-title" id="myModalLabel">Login to Your Account</h2>
+      </div>
+      <div class="modal-body login-modal">
+        <div class="clearfix"></div>
+        <div id='social-icons-conatainer'>
+          <div>
+            <p id="msg"></p>
+          </div>
+          <%= form_tag('/login/login', :id=>'loginForm') do %>
+              <div class='modal-body-left' style="margin-left: 5px">
+                <div class="form-group">
+                  <input type="email" id="email" name="email" placeholder="Enter your email" value="<%=params[:email] if params[:email].present? %>" class="form-control login-field" autofocus autocomplete >
+                  <i class="fa fa-user login-field-icon"></i>
+                </div>
 
-    .notice1 {
-        border: 1px solid #BBDBE0;
-        color: red;
-        padding: 10px 15px 10px 15px;
-        margin: 10px 0;
-        font-weight: bold;
-        overflow: hidden;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        margin-left: 20%;
-        text-align: center;
-    }
-</style>
-<script>
-    function form_submit() {
-        if (document.getElementById('user_name').value.trim() == '') {
-            document.getElementById("msg").style.display = "inline-block";
-            document.getElementById("msg").innerHTML = "Name cannot be blank.";
-            return false
-        }
-        if (document.getElementById('user_name').value.trim().split(' ').filter(String).length <= 1) {
-            document.getElementById("msg").style.display = "inline-block";
-            document.getElementById("msg").innerHTML = "Full name must contain First name and Last name.";
-            return false
-        }
-        if (document.getElementById('user_email').value != document.getElementById('email_reenter').value) {
-            document.getElementById("msg").style.display = "inline-block";
-            document.getElementById("msg").innerHTML = "Email addresses don't match.";
-            return false
-        }
-        if ((document.getElementById('user_email').value.split('@').length != 2) || ((document.getElementById('user_email').value.split('@')[1] != 'infibeam.net') && (document.getElementById('user_email').value.split('@')[1] != 'infibeam.com'))) {
-            document.getElementById("msg").style.display = "inline-block";
-            document.getElementById("msg").innerHTML = "Not a valid infibeam email address.";
-            return false
-        }
-        if (document.getElementById('user_password').value != document.getElementById('user_password_confirmation').value) {
-            document.getElementById("msg").style.display = "inline-block";
-            document.getElementById("msg").innerHTML = "Passwords don't match.";
-            return false
-        }
-        if (document.getElementById('user_password').value.length < 6) {
-            document.getElementById("msg").style.display = "inline-block";
-            document.getElementById("msg").innerHTML = "Password must be atleast 6 characters in length.";
-            return false
-        }
-        return true;
-    }
+                <div class="form-group">
+                  <input type="password" id="pass" name="pass" placeholder="Password" value="" class="form-control login-field">
+                  <i class="fa fa-lock login-field-icon"></i>
+                </div>
 
-</script>
-<div>
-  <form style="margin-top: 15%; margin-left: 20%;" action="<%= url_for :controller => 'users', :action => 'create' %>" method="post" onsubmit="return form_submit()">
-    <h3> Create Account on CMS </h3>
+                <button class="btn btn-success modal-login-btn" name="commit" value="Login" type="submit">Login</button>
+                <a href="/login/lostPassword" class="login-link text-center" name="commit" >Lost your password?</a>
+              </div>
+          <%end%>
 
-    <p>
-      <label> Full name</label>
-      <br/>
-      <input type="text" id="user_name" name="user_name" size="30" placeholder="Enter name"/>
-    </p>
+          <div class='modal-body-right'>
+            <div class="modal-social-icons">
+              <a href='#' class="btn btn-default facebook"> <i class="fa fa-facebook modal-icons"></i> Sign In with Facebook </a>
+              <a href='#' class="btn btn-default google"> <i class="fa fa-google-plus modal-icons"></i> Sign In with Google </a>
+            </div>
+          </div>
+          <div id='center-line'> OR </div>
+        </div>
+        <div class="clearfix"></div>
 
-    <p>
-      <label>Email</label>
-      <br/>
-      <input type="email" id="user_email" name="user_email" size="30" placeholder="email@grabfood.in"/>
-    </p>
-
-    <p>
-      <label>Re-Enter Email</label>
-      <br/>
-      <input type="email" id="email_reenter" size="30" placeholder="email@grabfood.in"/>
-    </p>
-
-    <p>
-      <label>Password</label>
-      <br/>
-      <input type="password" id="user_password" name="user_password" size="30" placeholder="Enter password"/>
-    </p>
-
-    <p>
-      <label>Re-enter password</label>
-      <br/>
-      <input type="password" id="user_password_confirmation" size="30" placeholder="Re-enter password"/>
-    </p>
-
-    <p>
-      <input type="submit" value="Create User"/>
-    </p>
-  </form>
-
-  <form method="post" action="/cms/login" class="button-to" style="margin-left: 30%;margin-top: -40px">
-    <div>
-      <input type="submit" value="Go Back">
+        <div class="form-group modal-register-btn">
+          <a href="/login/register" class="btn btn-default" > New User Please Register</a>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-footer login_modal_footer">
+      </div>
     </div>
-  </form>
-</div>
-<% if !flash[:notice].blank? %>
-    <br/>
-    <span class="notice1">&nbsp;<%= flash[:notice] %>&nbsp;</span>
-<% end %>
-
-<div id="msg" class="notice1" style="display:none">
-</div>
-
-</html>
+  </div>
