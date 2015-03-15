@@ -50,9 +50,14 @@
             <li><a href="#">Separated link</a></li>
           </ul>
         </li>
-        <li class="dropdown" id="menuLogin">
-          <a class="dropdown-toggle" href="/login/login" id="navLogin">Login</a>
-        </li>
+          <!--<a class="dropdown-toggle" href="/login/login" id="navLogin">Login</a>-->
+          <% if user_signed_in? %>
+              <%= link_to current_user.email, edit_user_registration_path %>
+              <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+          <% else %>
+              <%= link_to 'Sign Up', new_user_registration_path %>
+              <%= link_to 'Login', new_user_session_path %>
+          <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
