@@ -1,7 +1,5 @@
-class ProductController < ApplicationController
-  load_and_authorize_resource
-
-
+class ProductsController < ApplicationController
+  authorize_resource class: false
   def try
     puts "can can try"
   end
@@ -9,4 +7,5 @@ class ProductController < ApplicationController
   def try_harder
     puts "can can try"
   end
+
 end

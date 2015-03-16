@@ -40,3 +40,19 @@ body{
 h1{border-bottom:5px solid #00BB64;}
 
 
+#flash_notice, #flash_error {
+    padding: 5px 8px;
+    margin: 10px 0;
+}
+
+#flash_notice {
+    background-color: #CFC;
+    border: solid 1px #6C6;
+}
+
+#flash_error {
+    background-color: #FDB8BF;
+    border: solid 1px #F24E4E;
+}
+
+
