@@ -12,6 +12,9 @@ Rails.application.configure do
   ENV['GOOGLE_CLIENT_ID'] ='195850824980-4t0tplnctjbh0iemniqconlirjpftenb.apps.googleusercontent.com'
   ENV['GOOGLE_CLIENT_SECRET'] = 'tf2kf10w9TjKlaGnkyVYF1k6'
 
+  ENV['FACEBOOK_CLIENT_ID'] ='1565281843740173'
+  ENV['FACEBOOK_CLIENT_SECRET'] = 'b967b6eea970fa90cb6fef5c2dcd5e90'
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

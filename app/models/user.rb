@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   enum status: [:active, :inactive]
-  devise :omniauthable, :omniauth_providers => [:google]
+  devise :omniauthable, :omniauth_providers => [:google,:facebook]
+  # devise :omniauthable, :omniauth_providers => [:facebook]
   # attr_accessible :email, :password, :password_confirmation, :remember_me,:name
   has_many :user_role_maps, :class_name => "UserRoleMap", :primary_key => :id, :foreign_key => "user_id"
   has_many :roles, :through => :user_role_maps
@@ -19,7 +20,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
-    user = User.where(:email => data["email"]).first
+    user = User.where(provider: data["provider"], uid: data["uid"],email: data["email"]).first
 
     # Uncomment the section below if you want users to be created if they don't exist
     unless user
