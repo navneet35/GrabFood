@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314133325) do
+ActiveRecord::Schema.define(version: 20150323062620) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -19,6 +19,28 @@ ActiveRecord::Schema.define(version: 20150314133325) do
     t.string   "updated_by", limit: 255, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "servicable_cities", force: :cascade do |t|
+    t.string   "city_name",  limit: 255
+    t.string   "state",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "servicable_city_localities", force: :cascade do |t|
+    t.integer  "servicable_city_id", limit: 4
+    t.string   "locality_name",      limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "servicable_city_locality_locations", force: :cascade do |t|
+    t.integer  "servicable_city_locality_id", limit: 4
+    t.string   "location_name",               limit: 255
+    t.integer  "pincode",                     limit: 4
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   create_table "user_role_maps", force: :cascade do |t|
@@ -33,6 +55,8 @@ ActiveRecord::Schema.define(version: 20150314133325) do
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
     t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "uid",                    limit: 255
+    t.string   "provider",               limit: 255
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
